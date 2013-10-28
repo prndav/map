@@ -1,17 +1,28 @@
 myApp.controller('MapCtrl', ['$scope', 'MarkersJsonService', function($scope, MarkersJsonService){
 
-    var ll = new google.maps.LatLng(13.0810, 80.2740);
+    var ll = new google.maps.LatLng(49.841775, 24.030688);
 
-    /*MarkersJsonService.markers().then(function(markers){
-        console.log(markers)
-    })*/
+    MarkersJsonService.markers().then(function(markers){
+        console.log(markers);
+        console.log('markers loaded');
+
+        var tempArray = [];
+        markers.forEach(function(marker,index){
+            var ll = new google.maps.LatLng(marker['lat'], marker['long']);
+            var marker = new google.maps.Marker({
+                map:$scope.myMap,
+                position:ll
+            })
+            tempArray.push(markers);
+        })
+        $scope.myMarkers = markers;
+    })
 
     $scope.mapOptions = {
         center: ll,
-        zoom: 15,
+        zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-
 
 
     //Markers should be added after map is loaded

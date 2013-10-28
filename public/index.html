@@ -17,15 +17,22 @@
         <div ng-app="maptesting" >
             <div ng-controller="MapCtrl">
 
-                <div id="map" style="width: 300px; height: 300px" ui-map="myMap" hello-maps ui-options="mapOptions" ui-event="{'map-idle' : 'onMapIdle()'}"></div>
+                <div id="map" style="width: 800px; height: 400px" ui-map="myMap" map ui-options="mapOptions" ui-event="{'map-idle' : 'onMapIdle()'}"></div>
 
 
                 <!--In addition to creating the markers on the map,
                div elements with existing google.maps.Marker object
                 should be created to hook up with events -->
-               <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
-                              ui-event="{'map-click': 'markerClicked(marker)'}">
+               <div markers>
+                   <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+                                  ui-event="{'map-click': 'markerClicked(marker)'}">
+                    </div>
                 </div>
+
+                <div addMarker>
+                    <input type="text" ng-model="newMarker" />
+                </div>
+
 
             </div>
 
@@ -50,6 +57,7 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/services/services.js"></script>
+    <script src="scripts/directives/directives.js"></script>
 
     <script src="scripts/controllers/mapCtrl.js"></script>
 
