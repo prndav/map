@@ -1,69 +1,76 @@
 <!doctype html>
 <html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="styles/main.css">
-</head>
-  <body>
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="bower_components/bootstrap-sass/bootstrap-2.3.2.css">
+    </head>
+    <body>
 
-<div class="container">
-    <h1>This is meppep. For your health!</h1>
-    <div class="span12">
-        <div ng-app="maptesting" >
-            <div ng-controller="MapCtrl">
+        <div ng-app="maptesting" ng-controller="MapCtrl">
+            <div class="container-fluid">
+                <div class="span12">
+                    <h1>This is meppep. For your health!</h1>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="span8">
+                    <div class="map" id="map" style="height: 400px" ui-map="myMap" map ui-options="mapOptions" ui-event="{'map-idle' : 'onMapIdle()'}"></div>
 
-                <div id="map" style="width: 800px; height: 400px" ui-map="myMap" map ui-options="mapOptions" ui-event="{'map-idle' : 'onMapIdle()'}"></div>
 
-
-                <!--In addition to creating the markers on the map,
-               div elements with existing google.maps.Marker object
-                should be created to hook up with events -->
-               <div markers>
-                   <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
-                                  ui-event="{'map-click': 'markerClicked(marker)'}">
+                    <!--In addition to creating the markers on the map,
+                   div elements with existing google.maps.Marker object
+                    should be created to hook up with events -->
+                    <div markers>
+                        <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+                                      ui-event="{'map-click': 'markerClicked(marker)'}">
+                        </div>
                     </div>
                 </div>
 
-                <div addMarker>
-                    <input type="text" ng-model="newMarker" />
+                <div class="span4">
+                    <div class="controls">
+                        <div addmarker addaction="addAction">
+                            <form>
+                                <div class="form-group">
+                                    <label for="markerLat">Lattitude</label><input type="text" id="markerLat" ng-model="newMarkerLat" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="markerLong">Longitude</label><input type="text" id="markerLong" ng-model="newMarkerLong" />
+                                    <button  class="btn btn-primary" id="add">Save new marker</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-
-
             </div>
-
-
         </div>
-    </div>
-</div>
 
 
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+          var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+          (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+          g.src='//www.google-analytics.com/ga.js';
+          s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src='//www.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
-    </script>
+        <script src="bower_components/angular/angular.js"></script>
 
-    <script src="bower_components/angular/angular.js"></script>
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/services/services.js"></script>
+        <script src="scripts/directives/directives.js"></script>
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/services/services.js"></script>
-    <script src="scripts/directives/directives.js"></script>
+        <script src="scripts/controllers/mapCtrl.js"></script>
 
-    <script src="scripts/controllers/mapCtrl.js"></script>
-
-
-
-    <!-- endbuild -->
+        <!-- endbuild -->
 
         <!-- build:js scripts/plugins.js -->
         <script src="bower_components/jquery/jquery.js"></script>
@@ -90,15 +97,12 @@
         <script src="bower_components/angular-ui-utils/modules/event/event.js"></script>
         <script type="text/javascript" src="bower_components/angular-ui-map/src/map.js"></script>
 
-
         <!-- endbuild -->
 
 
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3mRSHzMYImcVMB0KV2YcVNabmhBqlAzg&sensor=true">
         </script>
 
-</body>
-
-
+    </body>
 
 </html>

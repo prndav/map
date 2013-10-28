@@ -8,3 +8,20 @@ myApp.directive('markers', [function(){
         }
     };
 }]);
+
+
+myApp.directive('addmarker', [function(){
+    return {
+      scope:{
+        addaction: '='
+      },
+      link: function(scope, element, attr) {
+        $(element).find("#add").on('click', function(){
+          var lat = scope.newMarkerLat;
+          var lon = scope.newMarkerLong;
+          var loc = {lat:lat, lon:lon};
+          scope.addaction(loc);
+        })
+      }
+    };
+}]);
