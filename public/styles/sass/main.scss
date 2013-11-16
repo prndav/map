@@ -5,6 +5,17 @@ html, body {
 max-width: none !important;
 }
 
+//inputs and shit
+form {
+
+    .ng-invalid {
+        border: 1px solid red !important;
+
+    }
+
+}
+
+
 .asdfasdf{
     width:20px;
 }

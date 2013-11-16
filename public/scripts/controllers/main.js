@@ -14,7 +14,7 @@ angular.module('maptesting').directive('helloMaps', function () {
       center: new google.maps.LatLng(latitude, longitude)
     };
 
-    scope.myMap = new google.maps.Map(document.getElementById("map"), mapOptions);
+    scope.myMap = GMap2(document.getElementById("map"), mapOptions);
   };
 });
 

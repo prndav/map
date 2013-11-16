@@ -1,1 +1,1 @@
-var myApp = angular.module('maptesting', ['ui.map', 'ui.utils', 'ngResource']);
+var myApp = angular.module('myApp', ['ui.map', 'ui.utils', 'ngResource']);

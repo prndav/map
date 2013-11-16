@@ -25,3 +25,19 @@ myApp.directive('addmarker', [function(){
       }
     };
 }]);
+
+
+
+myApp.directive('pickCoords', function($rootScope) {
+  return {
+    restrict: 'A',
+
+    link: function(scope, element, attrs) {
+      $(element).on('click', function(){
+
+        $rootScope.$emit('pickCoords');
+
+      })
+    }
+  };
+});
