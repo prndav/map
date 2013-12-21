@@ -1,0 +1,31 @@
+{
+  "title": "test meppe title",
+  "description": "test meppe description",
+
+  "maps": [
+    {
+      "id": 1,
+      "map_id": 1,
+      "name": "map-1",
+      "description": "map-1 description",
+      "lattitude": 49.80414,
+      "longitude": 24.98667
+    },
+    {
+      "id": 2,
+      "map_id": 1,
+      "name": "map-2",
+      "description": "map-2 description",
+      "lattitude": 49.80414,
+      "longitude": 25.98667
+    },
+    {
+      "id": 3,
+      "map_id": 1,
+      "name": "map-3",
+      "description": "map-3 description",
+      "lattitude": 49.80414,
+      "longitude": 26.98667
+    }
+  ]
+}

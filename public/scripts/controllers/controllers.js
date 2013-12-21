@@ -125,22 +125,22 @@
 
 
 
-    .controller("HomeCtrl", function ($scope, categoriesService, categoryContextService) {
+    .controller("HomeCtrl", function ($scope, categoriesService, meppeContextService) {
 
         $scope.categories = categoriesService.getAll();
-        $scope.categoryContextData = {};
+        $scope.meppeContextData = {};
 
-        $scope.getCategoryContextData = function () {
-          var promise = categoryContextService.getAll();
+        $scope.getMeppeContextData = function () {
+          var promise = meppeContextService.getAll();
           promise.then(function(data) {
-            $scope.categoryContextData = data;
+            $scope.meppeContextData = data;
           }, function(data) {
             alert('Failed while getting category context data: ' + data);
           });
         };
 
         function init () {
-          $scope.getCategoryContextData();
+          $scope.getMeppeContextData();
         }
 
         init();

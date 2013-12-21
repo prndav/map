@@ -173,7 +173,7 @@
     })
 
 
-    s.service('categoryContextService', function ($http, $q) {
+    s.service('meppeContextService', function ($http, $q) {
 
       this.getAll = function () {
         var deferred = $q.defer();
@@ -181,14 +181,14 @@
         $http(
         {
           method: 'GET',
-          url: 'scripts/services/category_context.json'
+          url: 'scripts/services/meppe_context.json'
         })
         .success(function (data) {
             deferred.resolve(data);
         })
         .error(function (e) {
-            deferred.reject("Error while fetching categoryContext");
-            console.log("Error while fetching categoryContext")
+            deferred.reject("Error while fetching meppeContext");
+            console.log("Error while fetching meppeContext")
         })
 
         return deferred.promise;
