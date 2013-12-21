@@ -1,16 +1,18 @@
 var d = angular.module('directives', []);
 
 
-
-    /*d.directive('createMeppe', function () {
+/*
+    d.directive('createMeppe', function () {
       return {
         restrict: "EA",
         controller: function ($scope) {
 
         },
-        templateUrl: 'views/'
+        templateUrl: 'views/createMeppe.html'
       }
-    })*/
+    })
+*/
+
     d.directive('todoMaps', function ($compile) {
       return {
         controller: function ($scope, $location, mapService, mapControlsService, infoWindowService, pointsService, markersService) {

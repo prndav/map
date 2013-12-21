@@ -8,7 +8,6 @@
           var promise = pointsService.getAll();
           promise.then(function(data) {
             $scope.todos = data;
-            debugger;
           }, function(data) {
             alert('Failed while getting points: ' + data);
           });
@@ -173,4 +172,8 @@
 
         init();
 
-    });
+    })
+
+
+    .controller("CreateMeppeCtrl", function ($scope) {})
+;
