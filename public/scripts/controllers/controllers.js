@@ -175,7 +175,7 @@
     })
 
 
-    .controller("CreateMeppeCtrl", function ($scope, meppeService, categoriesService) {
+    .controller("CreateMeppeCtrl", function ($scope, meppesService, categoriesService) {
 
       $scope.create = {};
       $scope.create.name = "";
@@ -192,7 +192,7 @@
       }
 
       $scope.saveMeppe = function () {
-        meppeService.save({
+        meppesService.save({
           name: $scope.name,
           description: $scope.description,
           category: $scope.category

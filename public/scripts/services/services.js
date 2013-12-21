@@ -205,7 +205,7 @@
     })
 
 
-    s.service ("meppeService", function ($http, $q) {
+    s.service ("meppesService", function ($http, $q) {
 
       this.getAll = function (optionalCategory) {
 
