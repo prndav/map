@@ -3,15 +3,3 @@ dist
 .tmp
 .sass-cache
 app/bower_components
-app/log
-app/temp
-app/db/*.sqlite3
-app/db/*.sqlite3-journal
-
-# Ignore other unneeded files.
-app/doc/
-*.swp
-*~
-.project
-.DS_Store
-.idea
