@@ -232,7 +232,7 @@
 
       this.save = function (newMeppe) {
         $http({
-          contentType: "application/json",
+          data: "application/json",
           method: "POST",
           url: "/meppes",
           params: newMeppe
