@@ -166,8 +166,7 @@
 
         var deferred = $q.defer();
 
-        $http(
-        {
+        $http({
           method: 'GET',
           url: 'mocks/categories.json'
         })
@@ -184,25 +183,23 @@
     })
 
 
-    s.service('meppeContextService', function ($http, $q) {
-
+    s.service ('meppesService', function ($http, $q) {
       this.getAll = function () {
+
         var deferred = $q.defer();
 
-        $http(
-        {
+        $http({
           method: 'GET',
-          url: 'mocks/meppe_context.json'
+          url: 'mocks/meppes.json'
         })
         .success(function (data) {
             deferred.resolve(data);
         })
         .error(function (e) {
-            deferred.reject("Error while fetching meppeContext");
-            console.log("Error while fetching meppeContext")
+            deferred.reject("Error while fetching meppes");
+            console.log("Error while fetching meppes")
         })
 
         return deferred.promise;
       }
-
     })

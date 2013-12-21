@@ -14,13 +14,13 @@
           when('/categories', {
             templateUrl: 'views/categories.html',
             controller: 'CategoriesCtrl'
+          })
+          .when('/:category', {
+            templateUrl: 'views/home.html',
+            controller: 'HomeCtrl'
           }).
           otherwise({
             redirectTo: '/phones'
-          })
-          .when('/:category', {
-            templateUrl: 'views/categories.html',
-            controller: 'CategoriesCtrl'
           })
 
 

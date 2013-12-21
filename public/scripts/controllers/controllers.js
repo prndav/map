@@ -125,11 +125,13 @@
 
 
 
-    .controller("HomeCtrl", function ($scope, categoriesService, meppeContextService) {
+    .controller("HomeCtrl", function ($scope, $routeParams, categoriesService, meppesService) {
 
         $scope.categories = {};
-        $scope.meppeContextData = {};
+        $scope.meppes = {};
 
+        //if no category is selected => get all meppes, if category is selected => filter
+        var optionalCategory = (typeof $routeParams.category === "undefined") ? "" : $routeParams.category;
 
         $scope.getCategories = function () {
           var promise = categoriesService.getAll();
@@ -140,18 +142,19 @@
           });
         };
 
-        $scope.getMeppeContextData = function () {
-          var promise = meppeContextService.getAll();
+        $scope.getMeppes = function () {
+          var promise = meppesService.getAll(optionalCategory);
           promise.then(function(data) {
-            $scope.meppeContextData = data;
+            $scope.meppes = data;
           }, function(data) {
-            alert('Failed while getting category context data: ' + data);
+            alert('Failed while getting meppes: ' + data);
           });
         };
 
 
+
         function init () {
-          $scope.getMeppeContextData();
+          $scope.getMeppes();
           $scope.getCategories();
         }
 
