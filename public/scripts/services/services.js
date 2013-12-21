@@ -231,10 +231,11 @@
 
 
       this.save = function (newMeppe) {
+        var newMeppeJSON = JSON.stringify(newMeppe);
         $http({
           method: "POST",
           url: "/meppes",
-          params: newMeppe
+          params: newMeppeJSON
         })
       }
 
