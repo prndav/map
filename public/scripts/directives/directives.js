@@ -13,7 +13,7 @@ var d = angular.module('directives', []);
     })*/
     d.directive('todoMaps', function ($compile) {
       return {
-        controller: function ($scope, $location, mapService, mapControlsService, infoWindowService, todosService, markersService) {
+        controller: function ($scope, $location, mapService, mapControlsService, infoWindowService, pointsService, markersService) {
           if ($location.path() === '') {
             $location.path('/');
           }
@@ -28,18 +28,18 @@ var d = angular.module('directives', []);
 
           this.registerMap = function (myMap) {
             mapService.setMap(myMap);
-            $scope.todos = todosService;
+            $scope.todos = pointsService;
           };
 
-          $scope.$watch('location.path()', function (path) {
+          /*$scope.$watch('location.path()', function (path) {
             todosService.filter = (path === '/active') ?
               { completed: false } : (path === '/completed') ?
               { completed: true } : null;
-          });
+          });*/
 
           $scope.$watch('location.path() + todos.nextId + todos.remainingCount()', function () {
             var i,
-              todos = todosService.filtered(),
+              todos = pointsService.filtered(),
               map = mapService.getMap(),
               todoId,
               marker,

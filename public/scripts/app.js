@@ -14,6 +14,10 @@
           when('/categories', {
             templateUrl: 'views/categories.html',
             controller: 'CategoriesCtrl'
+          }).
+          when('/create', {
+            templateUrl: 'views/create.html',
+            controller: 'CreateMeppeCtrl'
           })
           .when('/:category', {
             templateUrl: 'views/home.html',

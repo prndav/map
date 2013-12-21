@@ -1,11 +1,32 @@
     var s = angular.module('services', [])
 
     //todos
-    s.service('todosService', function ($filter) {
+    s.service('pointsService', function ($filter, $q, $http) {
 
     // nextId and list both have mock starting data
     this.nextId = 4;
-    this.items = [
+    this.items = [];
+
+    this.getAll = function () {
+        var deferred = $q.defer();
+
+        $http({
+          method: 'GET',
+          url: '/points' //'mocks/meppes.json',
+
+        })
+        .success(function (data) {
+            this.items = data;
+            deferred.resolve(data);
+        })
+        .error(function (e) {
+            deferred.reject("Error while fetching points");
+            console.log("Error while fetching points")
+        })
+
+        return deferred.promise;
+    }
+    /*this.items = [
       {
         id: 1,
         completed: false,
@@ -28,7 +49,7 @@
         lat: 43.0869882068853,
         lng: -89.42141638065578
       }
-    ];
+    ];*/
     this.filter = {};
     this.filtered = function () {
       return $filter('filter')(this.items, this.filter);
@@ -49,7 +70,7 @@
     this.addTodo = function (title, desc, lat, lng) {
       var newTodo = {
         id: this.nextId++,
-        completed: false,
+        /*completed: false,*/
         title: title,
         desc: desc,
         lat: lat,
@@ -78,6 +99,7 @@
       }
       if (flag) this.nextId++;
     };
+
     });
 
 
@@ -168,7 +190,7 @@
 
         $http({
           method: 'GET',
-          url: 'mocks/categories.json'
+          url: '/categories' //'mocks/categories.json'
         })
         .success(function (data) {
             deferred.resolve(data);
@@ -190,7 +212,7 @@
 
         $http({
           method: 'GET',
-          url: 'mocks/meppes.json',
+          url: '/meppes', //'mocks/meppes.json',
           params: {
             categoryName: optionalCategory
           }
