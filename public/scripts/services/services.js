@@ -231,8 +231,8 @@
 
 
       this.save = function (newMeppe) {
+        $http.defaults.headers.post["Content-Type"] = "application/json";
         $http({
-          data: "application/json",
           method: "POST",
           url: "/meppes",
           params: newMeppe
