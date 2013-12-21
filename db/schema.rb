@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130723050253) do
+ActiveRecord::Schema.define(version: 20131221165910) do
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "meppes", force: true do |t|
+    t.integer  "category_id"
+    t.string   "name"
+    t.text     "description"
+    t.float    "lat"
+    t.float    "long"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "meppes", ["category_id"], name: "index_meppes_on_category_id"
 
   create_table "notes", force: true do |t|
     t.string   "title"
@@ -19,5 +38,17 @@ ActiveRecord::Schema.define(version: 20130723050253) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "points", force: true do |t|
+    t.integer  "meppe_id"
+    t.string   "name"
+    t.text     "description"
+    t.float    "lat"
+    t.float    "long"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "points", ["meppe_id"], name: "index_points_on_meppe_id"
 
 end
