@@ -1,7 +1,18 @@
     angular.module('controllers', [])
-    .controller('EditTodoCtrl', function ($scope, mapService, todosService, infoWindowService, mapControlsService, NEW_TODO_ID) {
+    .controller('EditTodoCtrl', function ($scope, mapService, pointsService, infoWindowService, mapControlsService, NEW_TODO_ID) {
       var editPinImage,
         editMarker;
+
+      $scope.todos = [];
+      $scope.getTodos = function () {
+          var promise = pointsService.getAll();
+          promise.then(function(data) {
+            $scope.todos = data;
+            debugger;
+          }, function(data) {
+            alert('Failed while getting points: ' + data);
+          });
+      }
 
       $scope.editTodo = {};
 
@@ -52,7 +63,7 @@
       // editMarker Setup End
 
       $scope.$watch('controls.editTodo + controls.editTodoId', function () {
-        var pos, todo = mapControlsService.editTodoId !== NEW_TODO_ID && todosService.getTodoById(mapControlsService.editTodoId);
+        var pos, todo = mapControlsService.editTodoId !== NEW_TODO_ID && pointsService.getTodoById(mapControlsService.editTodoId);
         infoWindowService.close();
         if (mapControlsService.editTodo) {
           if (todo) {
@@ -62,7 +73,7 @@
               desc: todo.desc,
               lat: todo.lat,
               lng: todo.lng,
-              comp: todo.completed,
+              /*comp: todo.completed,*/
               saveMsg: "Update Todo",
               cancelMsg: "Discard Changes"
             };
@@ -97,7 +108,7 @@
       }
 
       function addTodo () {
-        todosService.addTodo(
+        pointsService.addTodo(
           $scope.editTodo.title,
           $scope.editTodo.desc,
           $scope.editTodo.lat,
@@ -106,15 +117,17 @@
       }
 
       function editTodo () {
-        todosService.updateTodo(
+        pointsService.updateTodo(
           $scope.editTodo.id,
           $scope.editTodo.title,
           $scope.editTodo.desc,
           $scope.editTodo.lat,
-          $scope.editTodo.lng,
-          $scope.editTodo.comp);
+          $scope.editTodo.lng
+          /*$scope.editTodo.comp*/);
         $scope.resetCloseTodoForm();
       }
+
+      $scope.getTodos();
     })
 
 

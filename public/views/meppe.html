@@ -14,14 +14,14 @@
           </ul>
         </div>
       </header>
-      <section ng-show="todos.filtered().length">
+      <section ng-show="todos.length">
         <ul>
-          <li ng-repeat="todo in todos.filtered()" ng-class="{completed: todo.completed}">
+          <li ng-repeat="todo in todos" ng-class="{completed: todo.completed}">
             <div>
               <input type="checkbox" ng-model="todo.completed">
               <label
                 ng-click="controls.openInfoWindowByTodoId(todo.id)"
-                ng-dblclick="controls.editTodoById(todo.id)">{{todo.title}}</label>
+                ng-dblclick="controls.editTodoById(todo.id)">{{todo.name}}</label>
             </div>
           </li>
         </ul>
