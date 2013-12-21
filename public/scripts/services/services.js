@@ -184,13 +184,16 @@
 
 
     s.service ('meppesService', function ($http, $q) {
-      this.getAll = function () {
+      this.getAll = function (optionalCategory) {
 
         var deferred = $q.defer();
 
         $http({
           method: 'GET',
-          url: 'mocks/meppes.json'
+          url: 'mocks/meppes.json',
+          params: {
+            categoryName: optionalCategory
+          }
         })
         .success(function (data) {
             deferred.resolve(data);
