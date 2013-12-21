@@ -5,3 +5,151 @@ Started GET "/categories.json" for 127.0.0.1 at 2013-12-21 20:46:17 +0200
 Processing by CategoriesController#index as JSON
   [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories"
 Completed 200 OK in 65ms (Views: 25.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/categories.json" for 127.0.0.1 at 2013-12-21 20:51:18 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CategoriesController#index as JSON
+  [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories"
+Completed 200 OK in 62ms (Views: 24.0ms | ActiveRecord: 0.7ms)
+  [1m[36m (158.8ms)[0m  [1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (175.2ms)[0m  CREATE TABLE "meppes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "category_id" integer, "name" varchar(255), "description" text, "lat" float, "long" float, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (198.8ms)[0m  [1mCREATE INDEX "index_meppes_on_category_id" ON "meppes" ("category_id")[0m
+  [1m[35m (198.0ms)[0m  CREATE TABLE "notes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "body" text, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (198.1ms)[0m  [1mCREATE TABLE "points" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "meppe_id" integer, "name" varchar(255), "description" text, "lat" float, "long" float, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (198.5ms)[0m  CREATE INDEX "index_points_on_meppe_id" ON "points" ("meppe_id")
+  [1m[36m (197.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (176.4ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (198.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131221165910')
+  [1m[36m (144.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20131221165240')[0m
+  [1m[35m (165.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20131221165745')
+  [1m[36m (177.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130723050253')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.9ms)[0m  INSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:32 UTC +00:00], ["name", "Sports"], ["updated_at", Sat, 21 Dec 2013 18:51:32 UTC +00:00]]
+  [1m[36m (157.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "meppes" ("category_id", "created_at", "lat", "long", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category_id", 1], ["created_at", Sat, 21 Dec 2013 18:51:32 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["name", "Bike routes"], ["updated_at", Sat, 21 Dec 2013 18:51:32 UTC +00:00]]
+  [1m[35m (164.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:33 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["meppe_id", 1], ["name", "Lviv"], ["updated_at", Sat, 21 Dec 2013 18:51:33 UTC +00:00]]
+  [1m[36m (177.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Sat, 21 Dec 2013 18:51:33 UTC +00:00], ["lat", 51.839683], ["long", 22.029717], ["meppe_id", 1], ["name", "Kyiv"], ["updated_at", Sat, 21 Dec 2013 18:51:33 UTC +00:00]]
+  [1m[35m (162.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:33 UTC +00:00], ["lat", 53.839683], ["long", 20.029717], ["meppe_id", 1], ["name", "Kharkiv"], ["updated_at", Sat, 21 Dec 2013 18:51:33 UTC +00:00]]
+  [1m[36m (152.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "meppes" ("category_id", "created_at", "lat", "long", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category_id", 1], ["created_at", Sat, 21 Dec 2013 18:51:33 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["name", "Skate tracks"], ["updated_at", Sat, 21 Dec 2013 18:51:33 UTC +00:00]]
+  [1m[35m (150.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:33 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["meppe_id", 2], ["name", "Lviv"], ["updated_at", Sat, 21 Dec 2013 18:51:33 UTC +00:00]]
+  [1m[36m (151.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Sat, 21 Dec 2013 18:51:33 UTC +00:00], ["lat", 51.839683], ["long", 22.029717], ["meppe_id", 2], ["name", "Kyiv"], ["updated_at", Sat, 21 Dec 2013 18:51:33 UTC +00:00]]
+  [1m[35m (130.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00], ["lat", 53.839683], ["long", 20.029717], ["meppe_id", 2], ["name", "Kharkiv"], ["updated_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00]]
+  [1m[36m (154.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "meppes" ("category_id", "created_at", "lat", "long", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category_id", 1], ["created_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["name", "Pools"], ["updated_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00]]
+  [1m[35m (152.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["meppe_id", 3], ["name", "Lviv"], ["updated_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00]]
+  [1m[36m (151.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00], ["lat", 51.839683], ["long", 22.029717], ["meppe_id", 3], ["name", "Kyiv"], ["updated_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00]]
+  [1m[35m (152.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00], ["lat", 53.839683], ["long", 20.029717], ["meppe_id", 3], ["name", "Kharkiv"], ["updated_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00]]
+  [1m[36m (152.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00], ["name", "Tourism"], ["updated_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00]]
+  [1m[35m (141.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "meppes" ("category_id", "created_at", "lat", "long", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["category_id", 2], ["created_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["name", "Lakes"], ["updated_at", Sat, 21 Dec 2013 18:51:34 UTC +00:00]]
+  [1m[36m (151.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Sat, 21 Dec 2013 18:51:35 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["meppe_id", 4], ["name", "Svityaz"], ["updated_at", Sat, 21 Dec 2013 18:51:35 UTC +00:00]]
+  [1m[35m (152.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:35 UTC +00:00], ["lat", 51.839683], ["long", 22.029717], ["meppe_id", 4], ["name", "Synevir"], ["updated_at", Sat, 21 Dec 2013 18:51:35 UTC +00:00]]
+  [1m[36m (295.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "meppes" ("category_id", "created_at", "lat", "long", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category_id", 2], ["created_at", Sat, 21 Dec 2013 18:51:35 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["name", "Hiking"], ["updated_at", Sat, 21 Dec 2013 18:51:35 UTC +00:00]]
+  [1m[35m (130.5ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:35 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["meppe_id", 5], ["name", "Crimea"], ["updated_at", Sat, 21 Dec 2013 18:51:35 UTC +00:00]]
+  [1m[36m (163.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Sat, 21 Dec 2013 18:51:35 UTC +00:00], ["lat", 51.839683], ["long", 22.029717], ["meppe_id", 5], ["name", "Hoverla"], ["updated_at", Sat, 21 Dec 2013 18:51:35 UTC +00:00]]
+  [1m[35m (165.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00], ["name", "Bars"], ["updated_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00]]
+  [1m[36m (141.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "meppes" ("category_id", "created_at", "lat", "long", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category_id", 3], ["created_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["name", "Beer"], ["updated_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00]]
+  [1m[35m (152.0ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["meppe_id", 6], ["name", "Lviv bar"], ["updated_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00]]
+  [1m[36m (151.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00], ["lat", 51.839683], ["long", 22.029717], ["meppe_id", 6], ["name", "Kyiv bar"], ["updated_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00]]
+  [1m[35m (152.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "meppes" ("category_id", "created_at", "lat", "long", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["category_id", 3], ["created_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["name", "Vine"], ["updated_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00]]
+  [1m[36m (152.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["meppe_id", 7], ["name", "Lviv vine"], ["updated_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00]]
+  [1m[35m (152.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00], ["lat", 51.839683], ["long", 22.029717], ["meppe_id", 7], ["name", "Kyiv vine"], ["updated_at", Sat, 21 Dec 2013 18:51:36 UTC +00:00]]
+  [1m[36m (141.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "meppes" ("category_id", "created_at", "lat", "long", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category_id", 3], ["created_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["name", "Free snacks"], ["updated_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00]]
+  [1m[35m (128.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["meppe_id", 8], ["name", "Lviv snacks"], ["updated_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00]]
+  [1m[36m (118.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00], ["lat", 51.839683], ["long", 22.029717], ["meppe_id", 8], ["name", "Kyiv snacks"], ["updated_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00]]
+  [1m[35m (130.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00], ["name", "Shops"], ["updated_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00]]
+  [1m[36m (143.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "meppes" ("category_id", "created_at", "lat", "long", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category_id", 4], ["created_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["name", "Grosery"], ["updated_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00]]
+  [1m[35m (151.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["meppe_id", 9], ["name", "Ashan"], ["updated_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00]]
+  [1m[36m (151.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00], ["lat", 51.839683], ["long", 22.029717], ["meppe_id", 9], ["name", "Arsen"], ["updated_at", Sat, 21 Dec 2013 18:51:37 UTC +00:00]]
+  [1m[35m (152.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "meppes" ("category_id", "created_at", "lat", "long", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["category_id", 4], ["created_at", Sat, 21 Dec 2013 18:51:38 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["name", "Electronics"], ["updated_at", Sat, 21 Dec 2013 18:51:38 UTC +00:00]]
+  [1m[36m (141.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Sat, 21 Dec 2013 18:51:38 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["meppe_id", 10], ["name", "Rozetka"], ["updated_at", Sat, 21 Dec 2013 18:51:38 UTC +00:00]]
+  [1m[35m (152.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:38 UTC +00:00], ["lat", 51.839683], ["long", 22.029717], ["meppe_id", 10], ["name", "Deshevshe"], ["updated_at", Sat, 21 Dec 2013 18:51:38 UTC +00:00]]
+  [1m[36m (141.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "meppes" ("category_id", "created_at", "lat", "long", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["category_id", 4], ["created_at", Sat, 21 Dec 2013 18:51:38 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["name", "Cloth"], ["updated_at", Sat, 21 Dec 2013 18:51:38 UTC +00:00]]
+  [1m[35m (141.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Sat, 21 Dec 2013 18:51:38 UTC +00:00], ["lat", 49.839683], ["long", 24.029717], ["meppe_id", 11], ["name", "Lviv secondhand"], ["updated_at", Sat, 21 Dec 2013 18:51:38 UTC +00:00]]
+  [1m[36m (130.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "points" ("created_at", "lat", "long", "meppe_id", "name", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Sat, 21 Dec 2013 18:51:38 UTC +00:00], ["lat", 51.839683], ["long", 22.029717], ["meppe_id", 11], ["name", "Kyiv secondhand"], ["updated_at", Sat, 21 Dec 2013 18:51:38 UTC +00:00]]
+  [1m[35m (130.7ms)[0m  commit transaction
+
+
+Started GET "/categories.json" for 127.0.0.1 at 2013-12-21 20:51:49 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CategoriesController#index as JSON
+  [1m[35mCategory Load (0.2ms)[0m  SELECT "categories".* FROM "categories"
+Completed 200 OK in 61ms (Views: 22.8ms | ActiveRecord: 0.7ms)
