@@ -127,8 +127,18 @@
 
     .controller("HomeCtrl", function ($scope, categoriesService, meppeContextService) {
 
-        $scope.categories = categoriesService.getAll();
+        $scope.categories = {};
         $scope.meppeContextData = {};
+
+
+        $scope.getCategories = function () {
+          var promise = categoriesService.getAll();
+          promise.then(function(data) {
+            $scope.categories = data;
+          }, function(data) {
+            alert('Failed while getting categories: ' + data);
+          });
+        };
 
         $scope.getMeppeContextData = function () {
           var promise = meppeContextService.getAll();
@@ -139,8 +149,10 @@
           });
         };
 
+
         function init () {
           $scope.getMeppeContextData();
+          $scope.getCategories();
         }
 
         init();

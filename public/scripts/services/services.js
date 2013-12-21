@@ -161,15 +161,26 @@
       };
     });
 
-    s.service ('categoriesService', function () {
-        this.getAll = function () {
-          return [
-            {name: "Sports"},
-            {name: "Entertainment"},
-            {name: "Culture"},
-            {name: "Transport"}
-          ]
-        }
+    s.service ('categoriesService', function ($http, $q) {
+      this.getAll = function () {
+
+        var deferred = $q.defer();
+
+        $http(
+        {
+          method: 'GET',
+          url: 'mocks/categories.json'
+        })
+        .success(function (data) {
+            deferred.resolve(data);
+        })
+        .error(function (e) {
+            deferred.reject("Error while fetching categories");
+            console.log("Error while fetching categories")
+        })
+
+        return deferred.promise;
+      }
     })
 
 
@@ -181,7 +192,7 @@
         $http(
         {
           method: 'GET',
-          url: 'scripts/services/meppe_context.json'
+          url: 'mocks/meppe_context.json'
         })
         .success(function (data) {
             deferred.resolve(data);

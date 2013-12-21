@@ -17,5 +17,15 @@
           }).
           otherwise({
             redirectTo: '/phones'
-          });
+          })
+          .when('/:category', {
+            templateUrl: 'views/categories.html',
+            controller: 'CategoriesCtrl'
+          })
+
+
+
       }]);
+
+
+
