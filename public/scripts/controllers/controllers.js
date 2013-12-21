@@ -193,11 +193,13 @@
 
       $scope.saveMeppe = function () {
         meppesService.save({
-          category_id: $scope.create.selectedCategory.id,
-          meppe: {
-            name: $scope.create.name,
-            description: $scope.create.description
-          }
+
+          "meppe": {
+            "name": $scope.create.name,
+            "description": $scope.create.description
+          },
+          category_id: $scope.create.selectedCategory.id
+
         });
       }
 
