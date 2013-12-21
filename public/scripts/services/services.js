@@ -205,14 +205,15 @@
     })
 
 
-    s.service ('meppesService', function ($http, $q) {
+    s.service ("meppeService", function ($http, $q) {
+
       this.getAll = function (optionalCategory) {
 
         var deferred = $q.defer();
 
         $http({
-          method: 'GET',
-          url: '/meppes', //'mocks/meppes.json',
+          method: "GET",
+          url: "/meppes", //'mocks/meppes.json',
           params: {
             categoryName: optionalCategory
           }
@@ -227,4 +228,14 @@
 
         return deferred.promise;
       }
+
+
+      this.save = function (newMeppe) {
+        $http({
+          method: "POST",
+          url: "/meppes",
+          params: newMeppe
+        })
+      }
+
     })

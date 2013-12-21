@@ -7,26 +7,23 @@
 
         <div class="form-group">
           <label for="meppeName">Name:</label>
-          <input class="form-control" id="meppeName" type="text" ng-model="form.name" required/>
+          <input class="form-control" id="meppeName" type="text" ng-model="create.name" placeholder="Name for meppe" required/>
         </div>
 
         <div class="form-group">
           <label for="meppeDescription">Address:</label>
-          <input class="form-control" id="meppeDescription" type="text" ng-model="" size="5"
-                 ng-pattern="zip" required/>
+          <textarea placeholder="Description for meppe" class="form-control" id="meppeDescription" type="text" ng-model="create.description" size="5"
+                  required></textarea>
         </div>
 
         <div class="form-group">
           <label for="meppeCategory">Contacts:</label>
-          <select class="form-control" id="meppeCategory" ng-model="contact.type">
-            <option>email</option>
-            <option>phone</option>
-            <option>pager</option>
-            <option>IM</option>
+          <select class="form-control" id="meppeCategory" ng-model="create.selectedCategory" ng-options="c.name for c in create.categories">
+            <option value="">Select category for meppe</option>
           </select>
         </div>
 
-        <button type="submit" class="btn btn-default" ng-click="save()" ng-disabled="isSaveDisabled()">Save</button>
+        <button type="submit" class="btn btn-default" ng-click="saveMeppe()" ng-disabled="isSaveDisabled()">Save</button>
         <button class="btn btn-danger" ng-click="cancel()" ng-disabled="isCancelDisabled()">Cancel</button>
 
       </form>

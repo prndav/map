@@ -175,5 +175,34 @@
     })
 
 
-    .controller("CreateMeppeCtrl", function ($scope) {})
+    .controller("CreateMeppeCtrl", function ($scope, meppeService, categoriesService) {
+
+      $scope.create = {};
+      $scope.create.name = "";
+      $scope.create.description = "";
+      $scope.create.selectedCategory = "";
+      $scope.create.categories = [];
+
+      $scope.getCategories = function () {
+        categoriesService.getAll().then(function(data) {
+          $scope.create.categories = data;
+        }, function(data) {
+          alert('Failed while getting categories: ' + data);
+        });
+      }
+
+      $scope.saveMeppe = function () {
+        meppeService.save({
+          name: $scope.name,
+          description: $scope.description,
+          category: $scope.category
+        });
+      }
+
+      var init = function () {
+        $scope.getCategories();
+      }
+      init();
+
+    })
 ;
