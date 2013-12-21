@@ -193,9 +193,9 @@
 
       $scope.saveMeppe = function () {
         meppesService.save({
-          name: $scope.name,
-          description: $scope.description,
-          category: $scope.category
+          name: $scope.create.name,
+          description: $scope.create.description,
+          category: $scope.create.selectedCategory.id
         });
       }
 
