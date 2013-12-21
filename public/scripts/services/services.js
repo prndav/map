@@ -232,6 +232,7 @@
 
       this.save = function (newMeppe) {
         $http({
+          contentType: "application/json",
           method: "POST",
           url: "/meppes",
           params: newMeppe
