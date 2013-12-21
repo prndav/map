@@ -164,10 +164,34 @@
     s.service ('categoriesService', function () {
         this.getAll = function () {
           return [
-            {title: "Sports"},
-            {title: "Entertainment"},
-            {title: "Culture"},
-            {title: "Transport"}
+            {name: "Sports"},
+            {name: "Entertainment"},
+            {name: "Culture"},
+            {name: "Transport"}
           ]
         }
+    })
+
+
+    s.service('categoryContextService', function ($http, $q) {
+
+      this.getAll = function () {
+        var deferred = $q.defer();
+
+        $http(
+        {
+          method: 'GET',
+          url: 'scripts/services/category_context.json'
+        })
+        .success(function (data) {
+            deferred.resolve(data);
+        })
+        .error(function (e) {
+            deferred.reject("Error while fetching categoryContext");
+            console.log("Error while fetching categoryContext")
+        })
+
+        return deferred.promise;
+      }
+
     })

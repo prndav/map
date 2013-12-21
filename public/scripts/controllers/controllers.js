@@ -118,13 +118,31 @@
     })
 
 
-    .controller("HomeCtrl", function ($scope, categoriesService) {
+
+
+
+
+
+
+
+    .controller("HomeCtrl", function ($scope, categoriesService, categoryContextService) {
+
         $scope.categories = categoriesService.getAll();
-    })
+        $scope.categoryContextData = {};
 
+        $scope.getCategoryContextData = function () {
+          var promise = categoryContextService.getAll();
+          promise.then(function(data) {
+            $scope.categoryContextData = data;
+          }, function(data) {
+            alert('Failed while getting category context data: ' + data);
+          });
+        };
 
+        function init () {
+          $scope.getCategoryContextData();
+        }
 
+        init();
 
-
-
-    ;
+    });

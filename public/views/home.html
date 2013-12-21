@@ -1,7 +1,31 @@
-Home page
+  <div class="container">
+    <h1 class="col-md-12">Home page</h1>
+  </div>
+
+  <div class="col-md-3">
+    <div class="bs-sidebar hidden-print" role="complementary">
+      <h3>Meppe categories</h3>
+      <ul class="nav bs-sidenav">
+        <li ng-repeat="category in categories">
+          <a href="#">{{$index}}. {{category.name}}</a>
+        <li>
+      </ul>
+    </div>
+  </div>
 
 
-<div ng-repeat="category in categories">
-  <span>{{$index}}. </span>{{category.title}}<span>
+
+
+
+<div class="container">
+  <h1 class="col-md-12">Don't just look at those meppes!</h1>
+
+  <div class="col-md-4" ng-repeat="point in categoryContextData.points">
+    <h3>
+      <a href="/#/meppe/3">{{point.name}}</a>
+    </h2>
+    <p>{{point.description}}<p>
+    <img src="http://placehold.it/350x150" />
+  </div>
 </div>
 
