@@ -1,0 +1,2 @@
+class MeppesController < ApplicationController
+end

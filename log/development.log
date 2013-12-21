@@ -5893,3 +5893,17 @@ Migrating to CreatePoints (20131221165910)
   [1m[35mPoint Load (0.4ms)[0m  SELECT "points".* FROM "points" WHERE "points"."meppe_id" = ?  [["meppe_id", 1]]
   [1m[36mMeppe Load (0.3ms)[0m  [1mSELECT "meppes".* FROM "meppes" ORDER BY "meppes"."id" ASC LIMIT 1[0m
   [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "points" WHERE "points"."meppe_id" = ?  [["meppe_id", 1]]
+
+
+Started GET "/points.json" for 127.0.0.1 at 2013-12-21 20:15:00 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PointsController#index as JSON
+  [1m[35mPoint Load (0.6ms)[0m  SELECT "points".* FROM "points"
+Completed 200 OK in 147ms (Views: 51.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/points/1.json" for 127.0.0.1 at 2013-12-21 20:16:01 +0200
+Processing by PointsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mPoint Load (0.3ms)[0m  [1mSELECT "points".* FROM "points" WHERE "points"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Completed 200 OK in 38ms (Views: 1.1ms | ActiveRecord: 1.1ms)
