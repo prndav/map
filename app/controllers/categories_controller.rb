@@ -29,11 +29,10 @@ class CategoriesController < ApplicationController
   private
 
     def category_params
-      params.permit(:title, :description)
+      params.permit(:name, :description)
     end
 
     def set_category
       @category = Category.find(params[:id])
     end
->>>>>>> 9bb39503067eecc324370047e74e3f2d5e140a62
 end

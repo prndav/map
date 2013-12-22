@@ -213,20 +213,20 @@
       $scope.newCategory = {};
 
       $scope.removeCategory = function (category) {
-        console.log(category)
-        categoriesService.remove(category);
+        categoriesService.remove(category)
+        .then(function () {
+          for (var i=0; i < $scope.manageCategories.categories.length; i++) {
+            if ($scope.manageCategories.categories[i].id == category){
+              $scope.manageCategories.categories.splice(i, 1);
+            }
+          }
+        })
       }
 
       $scope.addCategory = function () {
         $scope.newCategory = categoriesService.createNew();
       }
 
-      $scope.saveCategory = function () {
-        categoriesService.save({
-          name: $scope.newCategory.name,
-          description: $scope.newCategory.description
-        });
-      }
 
       $scope.getCategories = function () {
         categoriesService.getAll().then(function(data) {
@@ -256,6 +256,30 @@
           $scope.category = data;
         });
       }
+
+      $scope.saveCategory = function () {
+        if (!$scope.category.id) {
+          console.log("savin")
+          var promise = categoriesService.save($scope.category);
+          promise.then(function (data) {
+            console.log('saved')
+            $scope.manageCategories.categories.push(data)
+          })
+        } else {
+          console.log("updatin");
+          var promise = categoriesService.update($scope.category);
+          promise.then(function () {
+            for (var i=0; i < $scope.manageCategories.categories.length; i++) {
+              if ($scope.manageCategories.categories[i].id == $scope.category.id){
+                $scope.manageCategories.categories[i] = $scope.category;
+              }
+            }
+          })
+        }
+
+      }
+
+
 
       init();
 

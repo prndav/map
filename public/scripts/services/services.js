@@ -201,19 +201,39 @@
       }
 
       this.remove = function (id) {
+        var deferred = $q.defer();
+
         $http({
           method: 'DELETE',
-          url: '/categories',
-          params: { id: id }
+          url: '/categories/' + id
         })
+        .success(function () {
+            deferred.resolve();
+        })
+        .error(function (e) {
+            deferred.reject("Error while removing category");
+        })
+
+        return deferred.promise;
       }
 
       this.update = function (category) {
+        var deferred = $q.defer();
+
         $http({
           method: 'PUT',
-          url: '/categories',
+          url: '/categories/' + category.id,
           params: category
         })
+        .success(function () {
+            deferred.resolve();
+        })
+        .error(function (e) {
+            deferred.reject("Error while updating category");
+        })
+
+        return deferred.promise;
+
       }
 
       this.createNew = function () {
@@ -224,11 +244,23 @@
       }
 
       this.save = function (category) {
+
+        var deferred = $q.defer();
+
         $http({
           method: 'POST',
           url: '/categories',
           params: category
         })
+        .success(function (data) {
+            deferred.resolve(data);
+        })
+        .error(function (e) {
+            deferred.reject("Error while saving category");
+        })
+
+        return deferred.promise;
+
       }
 
       this.getById = function (id) {
