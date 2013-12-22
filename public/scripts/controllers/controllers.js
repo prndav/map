@@ -186,26 +186,77 @@
       $scope.getCategories = function () {
         categoriesService.getAll().then(function(data) {
           $scope.create.categories = data;
-        }, function(data) {
-          alert('Failed while getting categories: ' + data);
         });
       }
 
       $scope.saveMeppe = function () {
         meppesService.save({
-
-          meppe: {
-            name: $scope.create.name,
-            description: $scope.create.description
-          },
+          name: $scope.create.name,
+          description: $scope.create.description,
           category_id: $scope.create.selectedCategory.id
-
         });
       }
 
       var init = function () {
         $scope.getCategories();
       }
+      init();
+
+    })
+
+
+    .controller("ManageCategoriesCtrl", function ($scope, categoriesService, $location) {
+
+      $scope.manageCategories = {};
+      $scope.manageCategories.name = "";
+      $scope.categoriesLoaded = false;
+      $scope.newCategory = {};
+
+      $scope.removeCategory = function (category) {
+        console.log(category)
+        categoriesService.remove(category);
+      }
+
+      $scope.addCategory = function () {
+        $scope.newCategory = categoriesService.createNew();
+      }
+
+      $scope.saveCategory = function () {
+        categoriesService.save({
+          name: $scope.newCategory.name,
+          description: $scope.newCategory.description
+        });
+      }
+
+      $scope.getCategories = function () {
+        categoriesService.getAll().then(function(data) {
+          $scope.manageCategories.categories = data;
+          $scope.categoriesLoaded = true;
+        });
+      }
+
+      var init = function () {
+        $scope.getCategories();
+      }
+
+      init();
+
+    })
+
+    .controller("ManageCategoryCtrl", function ($scope, $stateParams, categoriesService) {
+      $scope.category = {};
+
+      var init = function () {
+        $scope.$watch( function () { return $scope.newCategory }, function (newValue) {
+          if(newValue){
+            $scope.category = $scope.newCategory;
+          }
+        })
+        categoriesService.getById($stateParams.category).then(function(data) {
+          $scope.category = data;
+        });
+      }
+
       init();
 
     })

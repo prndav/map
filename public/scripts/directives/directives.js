@@ -1,18 +1,6 @@
 var d = angular.module('directives', []);
 
 
-/*
-    d.directive('createMeppe', function () {
-      return {
-        restrict: "EA",
-        controller: function ($scope) {
-
-        },
-        templateUrl: 'views/createMeppe.html'
-      }
-    })
-*/
-
     d.directive('todoMaps', function ($compile) {
       return {
         controller: function ($scope, $location, mapService, mapControlsService, infoWindowService, pointsService, markersService) {
@@ -175,3 +163,47 @@ var d = angular.module('directives', []);
         }
       };
     });
+
+    d.directive('navMenuDirective', ['$location', '$timeout', function($location, $timeout) {
+      return {
+        restrict: "EA",
+        link: function(scope, element, attrs) {
+
+          var link, currentLink, i,
+              urlMap = {};
+
+          // Menu updating logic
+
+          scope.$on('$stateChangeSuccess', setMenuActive);
+
+          scope.$watch("categoriesLoaded", function (loaded) {
+            if(loaded == true) {
+              $timeout(function () {
+                var links = element.find('a');
+
+                for (i = 0; i < links.length; i++) {
+                  link = angular.element(links[i]);
+                  var href = link.attr('href').replace(/^\/#/, '');
+                  urlMap[href] = link;
+                }
+                setMenuActive();
+              })
+            }
+          })
+
+          function setMenuActive() {
+            if(scope.categoriesLoaded) {
+              var pathLink = urlMap[$location.path()];
+              $('.on').removeClass('on');
+              if (pathLink) {
+                pathLink.addClass('on');
+              }
+            }
+          }
+
+          // end Menu updating logic
+
+
+        }
+      }
+  }])

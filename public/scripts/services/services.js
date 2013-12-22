@@ -184,10 +184,9 @@
     });
 
     s.service ('categoriesService', function ($http, $q) {
+
       this.getAll = function () {
-
         var deferred = $q.defer();
-
         $http({
           method: 'GET',
           url: '/categories' //'mocks/categories.json'
@@ -197,12 +196,57 @@
         })
         .error(function (e) {
             deferred.reject("Error while fetching categories");
-            console.log("Error while fetching categories")
         })
-
         return deferred.promise;
       }
+
+      this.remove = function (id) {
+        $http({
+          method: 'DELETE',
+          url: '/categories',
+          params: { id: id }
+        })
+      }
+
+      this.update = function (category) {
+        $http({
+          method: 'PUT',
+          url: '/categories',
+          params: category
+        })
+      }
+
+      this.createNew = function () {
+        return {
+          name: "",
+          description: ""
+        };
+      }
+
+      this.save = function (category) {
+        $http({
+          method: 'POST',
+          url: '/categories',
+          params: category
+        })
+      }
+
+      this.getById = function (id) {
+          var deferred = $q.defer();
+          $http({
+            method: 'GET',
+            url: '/categories/'+id //'mocks/categories.json'
+          })
+          .success(function (data) {
+              deferred.resolve(data);
+          })
+          .error(function (e) {
+              deferred.reject("Error while fetching category");
+          })
+          return deferred.promise;
+      }
     })
+
 
 
     s.service ("meppesService", function ($http, $q) {
@@ -231,7 +275,6 @@
 
 
       this.save = function (newMeppe) {
-        $http.defaults.headers.post["Content-Type"] = "application/json";
         $http({
           method: "POST",
           url: "/meppes",

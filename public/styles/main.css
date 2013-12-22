@@ -32,7 +32,8 @@ a, .bs-sidebar .nav > .active:hover > a, .bs-sidebar .nav > .active:focus > a {
   padding: 5px 20px;
 }
 
-.button-create {
+.top-menu-button {
+  margin-left:10px;
   margin-top:8px;
   padding:0px !important;
 }
@@ -87,4 +88,48 @@ html { height: 100% }
 
 main {
    overflow-y:scroll;
+}
+.on {
+  font-weight:bold;
+}
+
+.manage-nav li {
+  position:relative;
+}
+
+
+
+.glyphicon.add-category {
+  display:inline-block;
+  float:right;
+  margin-right:20px;
+  margin-top:10px;
+}
+.glyphicon.add-category:hover {
+  color:green;
+}
+.glyphicon {
+  font-size: 1.5em;
+}
+.glyphicon:hover {
+  cursor:pointer;
+}
+
+.manage-nav li .glyphicon {
+  display:block;
+  position:absolute;
+  right:20px;
+}
+.manage-nav li .remove:hover {
+  color:red;
+}
+.bs-sidenav .nav > li > a:hover,
+.bs-sidenav  .nav > li > a:focus {
+  text-decoration: none;
+  background-color: none;
+}
+.bs-sidenav  .nav > li:hover,
+.bs-sidenav  .nav > li:focus {
+  text-decoration: none;
+  background-color: #eeeeee;
 }

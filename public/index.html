@@ -35,7 +35,10 @@
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="button-create" href="/#/createMeppe"><button class="btn btn-success ">Create meppe</button></a>
+                    <a class="top-menu-button" href="/#/manageCategories"><button class="btn btn-success ">Manage categories</button></a>
+                </li>
+                <li>
+                    <a class="top-menu-button" href="/#/createMeppe"><button class="btn btn-success ">Create meppe</button></a>
                 </li>
                 <li>
                   <a href="./about">Login</a>
@@ -47,7 +50,7 @@
 
 
     <!--alll content goes here-->
-    <main ng-view class="view-window">
+    <main ui-view class="view-window">
     </main>
 
 
@@ -55,8 +58,9 @@
     </footer>
 
 
-
+        <script src="vendor_js/ui-router.js"></script>
         <script src="scripts/app.js"></script>
+
         <script src="scripts/directives/directives.js"></script>
         <script src="scripts/services/services.js"></script>
         <script src="scripts/controllers/controllers.js"></script>

@@ -13,7 +13,7 @@ cats = {'Sports' => {'Bike routes' => ['Lviv', 'Kyiv', 'Kharkiv'], 'Skate tracks
       }
 
 cats.each do |cat_name, maps|
-  c = Category.create(name: cat_name)
+  c = Category.create(name: cat_name, description: "#{cat_name} description")
   maps.each do |map_name, points|
     m = c.meppes.create(name: map_name, lat: 49.839683, long: 24.029717)
     points.each_with_index do |point_name, index|
