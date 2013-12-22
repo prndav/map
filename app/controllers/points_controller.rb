@@ -11,6 +11,7 @@ class PointsController < ApplicationController
   end
 
   def create
+    binding.pry
     point = Point.new(point_params)
     point.save
     respond_with point
@@ -29,7 +30,7 @@ class PointsController < ApplicationController
   private
 
     def point_params
-      params.require(:point).permit(:name, :description, :lat, :long)
+      params.permit(:name, :description, :lat, :long)
     end
 
     def set_point
