@@ -13,10 +13,10 @@
                 templateUrl: 'views/meppe.html',
                 controller: 'EditTodoCtrl'
               }).
-              state('createMeppe', {
-                url: '/createMeppe',
-                templateUrl: 'views/createMeppe.html',
-                controller: 'CreateMeppeCtrl'
+              state('manageMeppes', {
+                url: '/manageMeppes',
+                templateUrl: 'views/manageMeppes.html',
+                controller: 'ManageMeppesCtrl'
               }).
               state('manageCategories', {
                 url: '/manageCategories',

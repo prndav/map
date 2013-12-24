@@ -11,7 +11,8 @@
     "angular-cookies": "~1.0.7",
     "angular-sanitize": "~1.0.7",
     "angular-ui-utils": "0.0.4",
-    "angular-ui-map": ""
+    "angular-ui-map": "",
+    "angular-bootstrap": ""
   },
   "devDependencies": {
     "angular-mocks": "~1.0.7",

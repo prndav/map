@@ -1,5 +1,16 @@
 var d = angular.module('directives', []);
 
+    d.directive('modalWindow', function () {
+      return {
+
+        restrict: "EA",
+        transclude: true,
+        template:  "<div class='meppe-modal modal-dialog' ng-transclude></div><div class='overlay'>teste</div>",
+        link: function () {
+
+        }
+      }
+    })
 
     d.directive('todoMaps', function ($compile) {
       return {

@@ -175,7 +175,12 @@
     })
 
 
-    .controller("CreateMeppeCtrl", function ($scope, meppesService, categoriesService) {
+
+
+//manageMeppe
+
+
+    .controller("ManageMeppesCtrl", function ($scope, meppesService, categoriesService ) {
 
       $scope.create = {};
       $scope.create.name = "";
@@ -203,6 +208,11 @@
       init();
 
     })
+// end manageMeppe
+
+
+
+
 
 
     .controller("ManageCategoriesCtrl", function ($scope, categoriesService, $location) {
