@@ -19,18 +19,16 @@ class MeppesController < ApplicationController
 
   def update
     @meppe.update_attributes(meppe_params)
-    respond_with @meppe
   end
 
   def destroy
     @meppe.destroy
-    respond_with @meppe
   end
 
   private
 
     def meppe_params
-      params.permit(:name, :description, :lat, :long)
+      params.permit(:name, :description, :lat, :long, :category_id)
     end
 
     def set_meppe

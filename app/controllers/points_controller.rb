@@ -19,12 +19,10 @@ class PointsController < ApplicationController
 
   def update
     @point.update_attributes(point_params)
-    respond_with @point
   end
 
   def destroy
     @point.destroy
-    respond_with @point
   end
 
   private

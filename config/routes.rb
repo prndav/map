@@ -1,11 +1,6 @@
 Testapp::Application.routes.draw do
-
-  get "api/ping" => "application#ping"
-
-  resources :notes, path: 'api/notes'
-  resources :categories
-  resources :meppes
+  resources :categories, except: [:new, :edit] do
+    resources :meppes, except: [:new, :edit], shallow: true
+  end
   resources :points
-
-
 end
