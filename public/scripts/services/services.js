@@ -189,7 +189,7 @@
         var deferred = $q.defer();
         $http({
           method: 'GET',
-          url: '/categories' //'mocks/categories.json'
+          url: '/categories/' //'mocks/categories.json'
         })
         .success(function (data) {
             deferred.resolve(data);
@@ -249,7 +249,7 @@
 
         $http({
           method: 'POST',
-          url: '/categories',
+          url: '/categories/',
           params: category
         })
         .success(function (data) {
@@ -289,7 +289,7 @@
 
         $http({
           method: "GET",
-          url: "/meppes", //'mocks/meppes.json',
+          url: "/meppes/", //'mocks/meppes.json',
           params: {
             categoryName: optionalCategory
           }
@@ -305,13 +305,69 @@
         return deferred.promise;
       }
 
+      this.update = function (meppe) {
+        var deferred = $q.defer();
 
-      this.save = function (newMeppe) {
         $http({
-          method: "POST",
-          url: "/meppes",
-          params: newMeppe
+          method: 'PUT',
+          url: '/meppes/' + meppe.id,
+          params: meppe
         })
+        .success(function (data) {
+            deferred.resolve(data);
+        })
+        .error(function (e) {
+            deferred.reject("Error while updating meppe");
+        })
+
+        return deferred.promise;
+
+      }
+
+
+      this.save = function (meppe) {
+
+        var deferred = $q.defer();
+
+        $http({
+          method: 'POST',
+          url: '/meppes/',
+          params: meppe
+        })
+        .success(function (data) {
+            deferred.resolve(data);
+        })
+        .error(function (e) {
+            deferred.reject("Error while saving meppe");
+        })
+
+        return deferred.promise;
+
+      }
+
+      this.createNew = function () {
+        return {
+          name: "",
+          description: "",
+          category_id: ""
+        };
+      }
+
+      this.remove = function (id) {
+        var deferred = $q.defer();
+
+        $http({
+          method: 'DELETE',
+          url: '/meppes/' + id
+        })
+        .success(function () {
+            deferred.resolve();
+        })
+        .error(function (e) {
+            deferred.reject("Error while removing meppe");
+        })
+
+        return deferred.promise;
       }
 
     })

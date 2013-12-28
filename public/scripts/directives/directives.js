@@ -2,11 +2,11 @@ var d = angular.module('directives', []);
 
     d.directive('modalWindow', function () {
       return {
-
         restrict: "EA",
         transclude: true,
-        template:  "<div class='meppe-modal modal-dialog' ng-transclude></div><div class='overlay'>teste</div>",
-        link: function () {
+        templateUrl: "views/meppeModalTemplate.html",
+
+        link: function (scope) {
 
         }
       }

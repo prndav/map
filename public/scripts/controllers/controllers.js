@@ -182,30 +182,96 @@
 
     .controller("ManageMeppesCtrl", function ($scope, meppesService, categoriesService ) {
 
-      $scope.create = {};
-      $scope.create.name = "";
-      $scope.create.description = "";
-      $scope.create.selectedCategory = "";
-      $scope.create.categories = [];
+      $scope.models = {};
+      $scope.models.pristineMeppeModel = {};
+      $scope.models.dirtyMeppeModel = {};
+      $scope.models.tempSelectedCategory = {};
+      $scope.meppes = {};
 
-      $scope.getCategories = function () {
-        categoriesService.getAll().then(function(data) {
-          $scope.create.categories = data;
+      $scope.getMeppes = function () {
+        meppesService.getAll().then(function(data) {
+          $scope.meppes.items = data;
         });
       }
 
-      $scope.saveMeppe = function () {
-        meppesService.save({
-          name: $scope.create.name,
-          description: $scope.create.description,
-          category_id: $scope.create.selectedCategory.id
-        });
+      $scope.removeMeppe = function (meppe) {
+        var id = meppe.id;
+        $scope.isViewLoading = true;
+
+        meppesService.remove(id).then(function () {
+          for (var i=0; i < $scope.meppes.items.length; i++) {
+            if ($scope.meppes.items[i].id == id){
+              $scope.meppes.items.splice(i, 1);
+            }
+          }
+          $scope.isViewLoading = false;
+        })
+
       }
+      $scope.saveMeppe = function (meppe) {
+        if (meppe.id) {
+          meppesService.update($scope.models.dirtyMeppeModel).
+            then(function () {
+              $scope.modal.showModal = false;
+              for (var i in $scope.models.dirtyMeppeModel){
+                $scope.models.pristineMeppeModel[i] = $scope.models.dirtyMeppeModel[i]
+              }
+            },
+            function () {
+              alert ('oops, something went wrong')
+            });
+        } else {
+          meppesService.save($scope.models.dirtyMeppeModel).
+            then(function (savedMeppe) { $scope.modal.showModal = false; $scope.meppes.items.push (savedMeppe) },
+              function () { alert ('oops, something went wrong')
+            });
+        }
+      }
+
+      $scope.manageMeppe = function (meppe) {
+        $scope.models.pristineMeppeModel = meppe ? meppe : {};
+        $scope.models.dirtyMeppeModel = meppe ? angular.copy(meppe) : meppesService.createNew();
+
+        $scope.$watch(function() {return $scope.models.tempSelectedCategory},
+          function() {$scope.models.dirtyMeppeModel.category_id =
+            $scope.models.tempSelectedCategory.id});
+
+        var result = categoriesService.getAll().then(function (categories) {
+          $scope.categories = categories;
+        })
+        $scope.modal.showModal = true;
+      }
+
+      $scope.saveUpdateSwitch = function () {
+        if ($scope.models.pristineMeppeModel.id != undefined) {
+          return "Update";
+        } else {
+          return "Save";
+        }
+      }
+
+
+
+      //modal
+      $scope.modal = {};
+      $scope.modal.showModal = false;
+      $scope.modal.open = function () {
+        $scope.modal.showModal = true;
+      }
+
+      $scope.modal.close = function () {
+        $scope.modal.showModal = false;
+      }
+
+
 
       var init = function () {
-        $scope.getCategories();
+        $scope.getMeppes();
       }
       init();
+
+
+
 
     })
 // end manageMeppe

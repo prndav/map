@@ -1,7 +1,7 @@
-    angular.module('mapApp', ['ui.state', 'controllers', 'services', 'directives'])
+    angular.module('mapApp', ['ngAnimate', 'ngRoute', 'ui.state', 'controllers', 'services', 'directives'])
     .value('NEW_TODO_ID', -1)
-    .config(['$stateProvider', '$routeProvider', '$urlRouterProvider',
-            function ($stateProvider, $routeProvider, $urlRouterProvider) {
+    .config(['$stateProvider', '$routeProvider', '$urlRouterProvider', '$httpProvider',
+            function ($stateProvider, $routeProvider, $urlRouterProvider, $httpProvider) {
               $stateProvider.
               state('home', {
                 url:'/',
@@ -32,9 +32,10 @@
                 url: '/:category',
                 templateUrl: 'views/home.html',
                 controller: 'HomeCtrl'
-              })
+              });
 
-      }]);
+              $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
 
+      }])
 
 
