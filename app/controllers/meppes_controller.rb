@@ -3,7 +3,11 @@ class MeppesController < ApplicationController
   before_action :set_meppe, only: [:show, :update, :destroy]
 
   def index
-    respond_with Meppe.all
+    if params[:category_id].present?
+      respond_with Category.find(params[:category_id]).meppes
+    else
+      respond_with Meppe.all
+    end
   end
 
   def show
